@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
+import static android.R.id.message;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView quantityTextView;
@@ -22,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(quantity);
-        displayPrice(quantity * 5);
+        int price = quantity * 5;
+        String message = "Item count " + quantity + " for a €" + price + " total.";
+        displayMessage(message);
     }
 
     /**
@@ -56,5 +59,13 @@ public class MainActivity extends AppCompatActivity {
     public void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 }
